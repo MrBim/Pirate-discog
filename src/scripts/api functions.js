@@ -1,8 +1,5 @@
-export const getArtist = async (term) => {
-    const url = `https://api.discogs.com/database/search?q=${term}`
-    const options = {
-
-    }
-    const res = fetch(url, options);
-    return await res.json();
-}
+export const getArtistData = async (term) => {
+  const url = `https://api.discogs.com/database/search?q=${term}&type=release&token=ckriixydRMHVDiabxrsRIjfzzRdRvrcGrYYCkTRk`;
+  const res = await fetch(url);
+  return res.json();
+};

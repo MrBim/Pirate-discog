@@ -1,12 +1,16 @@
+import { QueryClient, QueryClientProvider } from "react-query";
 import "./App.css";
 import SearchPage from "./Pages/SearchPage";
 
-const App = (): JSX.Element => {
+const queryClient = new QueryClient();
+const App = () => {
   return (
-    <div className="App">
-      <SearchPage />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
+        <SearchPage />
+      </div>
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;

@@ -1,19 +1,38 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
+import { useQuery, useQueryClient } from "react-query";
+import { getArtistData } from "../../scripts/api functions";
 
 const SearchResults = ({ term }) => {
-  const data = [{id: "12345", albumName: "the best album"}];
+  const query = useQuery("artistData", () => getArtistData(term), {
+    enabled: !!term,
+  });
+
+  useEffect(() => {
+    query.refetch();
+  }, [term]);
+
+  const queryMemo = useMemo(() => {
+    return query?.data?.results ?? [];
+  }, [query?.data]);
+
   return (
     <div>
       <table>
         <thead>
-          <tr>Album Name</tr>
+          <tr>
+            <th>Album Name</th>
+          </tr>
         </thead>
         <tbody>
-          {data && data.map((it) => (
-            <tr key={it.id}>
-              <td>{it.albumName}</td>
-            </tr>
-          ))}
+          {queryMemo &&
+            queryMemo.map((it) => (
+              <tr key={it.id}>
+                <td>{it.title}</td>
+                <td>
+                  <img style={{ maxHeight: "100px" }} src={it.cover_image} />
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
