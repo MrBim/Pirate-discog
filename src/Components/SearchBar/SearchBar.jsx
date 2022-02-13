@@ -9,9 +9,20 @@ const SearchBar = ({ term, setTerm }) => {
   const handleSearchClick = () => {
     setTerm(inputValue);
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      setTerm(inputValue);
+    }
+  };
   return (
     <div>
-      <input value={inputValue} type="text" onChange={handleTermUpdate} />
+      <input
+        value={inputValue}
+        type="text"
+        onChange={handleTermUpdate}
+        onKeyPress={handleKeyPress}
+      />
       <button onClick={handleSearchClick}>Search</button>
     </div>
   );
