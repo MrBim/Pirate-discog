@@ -22,7 +22,6 @@ const SearchPage = () => {
 
   return (
     <div>
-      SearchPage
       <SearchBar term={term} setTerm={handleSetTerm} />
       <Tabs onSelect={handleTabSelect} selectedIndex={selectedTab}>
         <TabList>

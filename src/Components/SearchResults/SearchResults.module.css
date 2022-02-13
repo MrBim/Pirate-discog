@@ -1,0 +1,29 @@
+.searchResults {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.artistCard {
+  border: 1px solid black;
+  margin: 0.4%;
+  display: flex;
+  max-width: 300px;
+  justify-content: space-between;
+  height: 70px;
+  width: 24.2%;
+}
+
+.artistCardButton {
+  min-width: 50%;
+}
+
+.artistImageContainer {
+    width: 100%;
+    overflow: hidden;
+}
+
+.artistImage {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}

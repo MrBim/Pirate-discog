@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { useMemo, useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { getReleases } from "../../scripts/api-functions";
-// import { sortResults } from "../../scripts/data-functions";
+import styles from "./AlbumBrowser.module.css";
 
 const AlbumBrowser = (artistId) => {
   const [sortOrder, setSortOrder] = useState("b1");
@@ -27,37 +27,27 @@ const AlbumBrowser = (artistId) => {
   }, [sortOrder]);
   return (
     <div>
-      <label htmlFor="sort-order" style={{margin: "4px 4px 4px 104px"}}>Sort By:</label>
+      <label htmlFor="sort-order" className={styles.selectLabel}>
+        Sort By:
+      </label>
       <select onChange={handleSortOrder} value={sortOrder} id="sort-order">
-        <option value={"b1"}>Year (newest first)</option>
-        <option value={"b2"}>Year (oldest first)</option>
+        <option value={"b2"}>Year (newest first)</option>
+        <option value={"b1"}>Year (oldest first)</option>
         <option value={"a1"}>Name A-Z</option>
         <option value={"a2"}>Name Z-A</option>
       </select>
-      <div style={{ margin: "4px 100px" }}>
+      <div className={styles.releaseCardContainer}>
         {!!releases &&
           releases.map((it) => (
             <div
               key={`${it.id}${it.title}${it.year}${it.role}`}
-              style={{
-                border: "1px solid black",
-                margin: "4px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                height: "100px",
-                width: "100%",
-              }}
+              className={styles.releaseCard}
             >
               <div>{it.title}</div>
               <div>{it.year}</div>
               <div>
                 <img
-                  style={{
-                    maxHeight: "99px",
-                    position: "relative",
-                    top: "2px",
-                  }}
+                  className={styles.releaseCardImage}
                   src={it.thumb}
                   alt={`${it.title} album cover`}
                 />

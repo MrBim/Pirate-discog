@@ -1,0 +1,25 @@
+.selectLabel {
+  margin: 8px;
+}
+
+.releaseCardContainer {
+  margin: 4px;
+}
+
+.releaseCard {
+  border: 1px solid black;
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  width: 100%;
+}
+
+.releaseCardImage {
+  max-height: 99px;
+  position: relative;
+  top: 2px;
+  width: 100%;
+  object-fit: contain;
+}

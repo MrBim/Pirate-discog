@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { useQuery } from "react-query";
 import { getArtistData } from "../../scripts/api-functions";
+import styles from './SearchResults.module.css';
 
 const SearchResults = ({ term, setSelectedArtist }) => {
   const query = useQuery("artistData", () => getArtistData(term), {
@@ -24,28 +25,20 @@ const SearchResults = ({ term, setSelectedArtist }) => {
     <div>
       <div>
         <h3>possible artists</h3>
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <div className={styles.searchResults}>
           {artistMemo &&
             artistMemo.map((artist) => (
               <div
                 key={artist.id}
-                style={{
-                  border: "1px solid black",
-                  margin: "0.4%",
-                  display: "flex",
-                  maxWidth: "300px",
-                  justifyContent: "space-between",
-                  height: "50px",
-                  width: "24.2%",
-                }}
+               className={styles.artistCard}
               >
-                <button onClick={handleSelectArtist} data-artist={artist.id} style={{minWidth: "50%"}}>
+                <button onClick={handleSelectArtist} data-artist={artist.id} className={styles.artistCardButton}>
                   {artist.title}
                 </button>
-                <div>
+                <div className={styles.artistImageContainer}>
                   <img
                     src={artist.thumb}
-                    style={{ maxHeight: "50px" }}
+                    className={styles.artistImage}
                     alt={`${artist.title}`}
                   />
                 </div>
