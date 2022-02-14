@@ -10,23 +10,24 @@ const AlbumBrowser = (artistId) => {
     setSortOrder(e.target.value);
   };
 
-  const query = useQuery("releases", () => getReleases(artistId, sortOrder), {
+  const { data, error, refetch } = useQuery("releases", () => getReleases(artistId, sortOrder), {
     enabled: !!artistId,
   });
   const releases = useMemo(() => {
-    const queryData = query?.data?.releases ?? [];
+    const queryData = data?.releases ?? [];
     const sortDirection = sortOrder.includes("1") ? "asc" : "desc";
     const sortKey = sortOrder.includes("a") ? "title" : "year";
     return _.orderBy(queryData, sortKey, sortDirection);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query?.data]);
+  }, [data]);
 
   useEffect(() => {
-    query.refetch();
+    refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortOrder]);
+  if(error) return <h4>There has been a problem with your search</h4>;
   return (
-    <div>
+    <div data-test="release-results-container">
       <label htmlFor="sort-order" className={styles.selectLabel}>
         Sort By:
       </label>
@@ -42,6 +43,7 @@ const AlbumBrowser = (artistId) => {
             <div
               key={`${it.id}${it.title}${it.year}${it.role}`}
               className={styles.releaseCard}
+              data-test="release-result"
             >
               <div>{it.title}</div>
               <div>{it.year}</div>
