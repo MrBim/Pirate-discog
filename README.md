@@ -1,3 +1,18 @@
+# Pirate Discogs browser
+
+Created by Bim Williams
+
+# Instructions for use 
+
+Search for an artist by name. 
+Select the correct artist by clicking their button.
+See all their lovely releases. 
+Use the dropdown to order by name or by release date (ascending and descending).
+
+# Instructions for cypress tests
+
+To run the Cypress tests start the app on local host and run `npx cypress open` from the root folder.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -16,7 +31,7 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
+ Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
